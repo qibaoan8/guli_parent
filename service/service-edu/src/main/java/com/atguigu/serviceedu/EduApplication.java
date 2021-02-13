@@ -8,12 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.atguigu"})
-//public class EduApplication extends SpringBootServletInitializer {
 public class EduApplication  {
-    //@Override
-    //protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-    //    return builder.sources(EduApplication.class);
-    //}
 
     public static void main(String[] args) {
         SpringApplication.run(EduApplication.class, args);
