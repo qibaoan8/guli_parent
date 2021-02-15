@@ -8,6 +8,7 @@ import com.atguigu.serviceedu.service.EduVideoService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -49,10 +50,16 @@ public class EduVideoController {
 
     @PostMapping("delete")
     public R deleteVideo(@RequestBody EduVideo eduVideo) {
-        //TODO 需要加上判断是否有视频的逻辑
-        eduVideoService.removeById(eduVideo.getId());
+        eduVideoService.removeVideoById(eduVideo.getId());
         return R.ok();
     }
+
+    @PostMapping("upload")
+    public R uploadVideo(@RequestBody MultipartFile file){
+        String videoId = eduVideoService.uploadVideo(file);
+        return R.ok().data("videoId",videoId);
+    }
+
 
 }
 

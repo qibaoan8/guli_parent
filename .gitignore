@@ -3,7 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/src.test/**/target/
-*.properties
+service/service-vod/src/main/resources/application.properties
+service/service-edu/src/main/resources/application.properties
 
 ### STS ###
 .apt_generated

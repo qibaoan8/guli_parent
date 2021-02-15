@@ -29,6 +29,7 @@ public class VideoServiceImpl implements VideoService {
             DefaultAcsClient client = AliyunVodSDKUtils.initVodClient();
             client.getAcsResponse(request);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new FeiException(20010, "删除视频失败");
         }
     }

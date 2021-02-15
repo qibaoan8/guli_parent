@@ -1,4 +1,4 @@
-package com.atguigu.servicevod.controller.admin;
+package com.atguigu.servicevod.controller;
 
 import com.atguigu.commonutils.R;
 import com.atguigu.servicevod.service.VideoService;
@@ -27,7 +27,7 @@ public class VideoAdminController {
 
     @PostMapping("delete")
     public R deleteVideo(
-            @RequestParam("videoId") String videoIds) {
+            @RequestParam("videoIds") String videoIds) {
         videoService.deleteVideo(videoIds);
         return R.ok().message("视频删除成功");
     }
