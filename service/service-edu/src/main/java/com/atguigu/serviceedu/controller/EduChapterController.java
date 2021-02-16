@@ -54,7 +54,6 @@ public class EduChapterController {
 
     @PostMapping("delete")
     public R deleteChapter(@RequestBody EduChapter eduChapter) {
-        //TODO 需要加上判断是否有小节的逻辑
         eduChapterService.deleteChapter(eduChapter);
         return R.ok();
     }

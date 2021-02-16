@@ -14,6 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 2021-02-02
  */
 public interface EduVideoService extends IService<EduVideo> {
-    public void removeVideoById(String videoId);
-    public String uploadVideo(MultipartFile file);
+    void removeVideo(EduVideo eduVideo);
+    String uploadVideo(MultipartFile file);
+
+    void removeVideoSource(String videoSourceId);
+
+    void removeVideoByCourseId(String courseId);
 }

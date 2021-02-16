@@ -7,18 +7,17 @@ import com.atguigu.serviceedu.entity.form.CourseInfoForm;
 import com.atguigu.serviceedu.entity.form.CourseQuery;
 import com.atguigu.serviceedu.entity.vo.CoursePublishVo;
 import com.atguigu.serviceedu.mapper.EduCourseMapper;
+import com.atguigu.serviceedu.service.EduChapterService;
 import com.atguigu.serviceedu.service.EduCourseDescriptionService;
 import com.atguigu.serviceedu.service.EduCourseService;
+import com.atguigu.serviceedu.service.EduVideoService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * <p>
@@ -31,8 +30,37 @@ import java.util.List;
 @Service
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {
 
+
     @Autowired
     private EduCourseDescriptionService eduCourseDescriptionService;
+
+    @Autowired
+    private EduChapterService eduChapterService;
+
+    @Autowired
+    private EduVideoService eduVideoService;
+
+    @Autowired
+    private EduCourseService eduCourseService;
+
+    @Override
+    public void removeCourse(EduCourse eduCourse) {
+        //删除课程使用批量删除，查询课程删除，查询章节删除，查询小节删除，查询视频删除
+        String courseId = eduCourse.getId();
+
+        // 删除小节 和 视频
+        eduVideoService.removeVideoByCourseId(courseId);
+
+        // 删除章节
+        eduChapterService.removeChapterByCourseId(courseId);
+
+        // 删除描述
+        eduCourseDescriptionService.removeById(courseId);
+
+        // 删除课程
+        baseMapper.deleteById(courseId);
+
+    }
 
     @Override
     public String saveCourseInfo(CourseInfoForm courseInfoForm) {

@@ -97,5 +97,11 @@ public class EduCourseController {
         map.put("rows", page.getRecords());
         return R.ok().data(map);
     }
+
+    @PostMapping("deleteCourse")
+    public R deleteCourse(@RequestBody EduCourse eduCourse){
+        eduCourseService.removeCourse(eduCourse);
+        return R.ok();
+    }
 }
 

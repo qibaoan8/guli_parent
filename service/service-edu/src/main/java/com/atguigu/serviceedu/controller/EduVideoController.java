@@ -50,16 +50,20 @@ public class EduVideoController {
 
     @PostMapping("delete")
     public R deleteVideo(@RequestBody EduVideo eduVideo) {
-        eduVideoService.removeVideoById(eduVideo.getId());
+        eduVideoService.removeVideo(eduVideo);
         return R.ok();
     }
 
     @PostMapping("upload")
     public R uploadVideo(@RequestBody MultipartFile file){
-        String videoId = eduVideoService.uploadVideo(file);
-        return R.ok().data("videoId",videoId);
+        String videoSourceId = eduVideoService.uploadVideo(file);
+        return R.ok().data("videoSourceId",videoSourceId);
     }
 
-
+    @PutMapping("deleteVideoSource/{videoSourceId}")
+    public R deleteVideoSource(@PathVariable String videoSourceId) {
+        eduVideoService.removeVideoSource(videoSourceId);
+        return R.ok();
+    }
 }
 

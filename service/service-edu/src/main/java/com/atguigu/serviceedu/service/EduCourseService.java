@@ -30,4 +30,6 @@ public interface EduCourseService extends IService<EduCourse> {
 
 
     void getCourseList(Page<EduCourse> page, CourseQuery courseQuery);
+
+    void removeCourse(EduCourse eduCourse);
 }
